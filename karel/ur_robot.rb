@@ -36,9 +36,9 @@ class UrRobot < Robota
     result
   end
   
-  # def color
-    # return @color
-  # end 
+  def color
+    return @color
+  end 
   
   def state
     return [@street, @avenue, @direction, @beepers, @runstate, @color]
@@ -170,6 +170,4 @@ class UrRobot < Robota
   def set_pausing(pause = true)
     @pausing = pause
   end
-  
-  
 end
