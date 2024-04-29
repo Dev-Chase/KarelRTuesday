@@ -38,6 +38,14 @@ module ChaseMixin
     end
   end
 
+  def back_up_times(n)
+    i = 0
+    while i < n do
+      back_up()
+      i += 1
+    end
+  end
+
   def advance_put_beeper()
     move()
     put_beeper()
