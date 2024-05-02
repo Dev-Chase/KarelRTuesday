@@ -59,12 +59,44 @@ module ChaseMixin
     end
   end
 
+  def put_beeper_advance()
+    put_beeper()
+    move()
+  end
+
+  def put_beeper_advance_times(n)
+    i = 0
+    while i < n do
+      put_beeper_advance()
+      i += 1
+    end
+  end
+
   def place_beeper_times(n)
     i = 0
     while i < n do
       put_beeper()
       i += 1
     end
+  end
+
+  def place_all_beepers()
+    while any_beepers_in_beeper_bag?()
+      put_beeper()
+    end
+  end
+
+  def pick_all_beepers()
+    while next_to_a_beeper?()
+      pick_beeper()
+    end
+  end
+
+  def move_dir(dir)
+    cur_dir = @direction
+    point_at(dir)
+    move()
+    point_at(cur_dir)
   end
 
   def go_to(street, avenue)
