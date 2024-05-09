@@ -21,6 +21,5 @@ class Q2Robot
 
   	o_letter = EcrivainO.new(l2_letter.get_next_avenue())
   	o_letter.ecrit_lettre()
-	#TODO: implement
   end
 end
