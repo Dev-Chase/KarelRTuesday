@@ -119,6 +119,23 @@ class RobotImage
        end
      end    
   end
+
+  def rotate_right()
+    @direction = $directions[($directions.index(@direction) + 3) %4]
+    delete_all 
+    @image = @imageMap[@direction]
+     x, y = scaler(@street, @avenue)
+     if @canvas
+       @image.place(:x => x , :y => y)
+       if @color == nil
+         @bg_color = :white
+         if $world.beepers_at?(@street, @avenue)
+           @bg_color = :black
+         end
+           @image.configure(:bg => @bg_color)
+       end
+     end    
+  end
   
   def pick_put()
        if @color == nil
@@ -433,6 +450,10 @@ end
      def turn_left_robot(robot)
        # robot.delete_all
        robot.rotate       
+     end
+
+     def turn_right_robot(robot)
+       robot.rotate_right
      end
      
     def set_speed (amount)

@@ -5,7 +5,7 @@ class BetterInit2 < UrRobot
   include ChaseMixin2
 
   # Makes it (x, y) instead of (y, x) initialization
-  def initialize(avenue, street, direction, beepers)
-    super(street, avenue, direction, beepers)
+  def initialize(street, avenue, direction, beepers)
+    super(avenue, street, direction, beepers)
   end
 end

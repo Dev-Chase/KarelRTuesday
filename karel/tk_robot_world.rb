@@ -67,6 +67,13 @@ class RobotWorld < RobotWorldBase
         $window.turn_left_robot(@@graphical_robots[robot])
         # @@graphical_robots[robot].rotate()
       end
+    elsif action == TURN_RIGHT_ACTION
+      # puts 'turn'
+      if $window
+        sleep(@@delay / 100.0)
+        $window.turn_right_robot(@@graphical_robots[robot])
+        # @@graphical_robots[robot].rotate()
+      end
     elsif action == TURN_OFF_ACTION
        sleep(@@delay / 200.0)
       $window.turn_off_robot(@@graphical_robots[robot])
