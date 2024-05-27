@@ -4,7 +4,7 @@
 #License: Creative Commons Attribution-Noncommercial-Share Alike 3.0 United States License
 
 $graphical = true
-$world_maker_size = 12 if $world_maker_size == nil
+$world_maker_size = 31 if $world_maker_size == nil
 # => require_relative 'tk'
 require 'tkextlib/tcllib.rb'
 require_relative 'robota'

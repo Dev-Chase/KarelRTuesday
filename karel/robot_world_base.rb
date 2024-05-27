@@ -11,6 +11,7 @@ class RobotWorldBase
   public :Beepers, :EastWestWalls, :NorthSouthWalls
   
   MOVE_ACTION = 0
+  GO_TO_ACTION = 7
   TURN_LEFT_ACTION = 1
   TURN_RIGHT_ACTION = 6
   PICK_BEEPER_ACTION = 2

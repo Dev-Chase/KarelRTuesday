@@ -16,6 +16,14 @@ module ChaseMixin2
     return @avenue
   end
 
+  def get_x()
+    return @avenue
+  end
+
+  def get_y()
+    return @street
+  end
+
   # Turning Methods
   def point_at(dir)
     while (@direction != dir)
@@ -30,19 +38,37 @@ module ChaseMixin2
   end
 
   # Movement and Beeper Methods
+  # NOTE: can move backwards
   def move(n = 1)
-    n.times do
+    turn_left(2) if n < 1
+    n.abs.times do
       if front_is_clear?()
         super()
       else
         puts("Would've hit wall at (" + @avenue.to_s() + ", " + @street.to_s() + ")")
       end
     end
+    turn_left(2) if n < 1
   end
 
   def back_up(n = 1)
+    turn_left(2)
     n.times do
-      back_up()
+      move()
+    end
+    turn_left(2)
+  end
+
+  def put_beeper(n = 1)
+    if n == $ALL
+      while any_beepers_in_beeper_bag?()
+        super()
+      end
+      return
+    end
+
+    n.times do
+      super() if any_beepers_in_beeper_bag?()
     end
   end
 
@@ -60,37 +86,30 @@ module ChaseMixin2
     end
   end
 
-  def put_beeper(n = 1)
-    if n == ALL
-      while any_beepers_in_beeper_bag?()
-        put_beeper()
+  def pick_beeper(n = 1)
+    if n == $ALL
+      while next_to_a_beeper?()
+        super()
       end
       return
     end
 
     n.times do
-      if any_beepers_in_beeper_bag?()
-        super()
-      else
-        puts("No more beepers in bag!")
-      end
+      super() if next_to_a_beeper?()
     end
   end
 
-  def pick_beepers(n = 1)
-    if n == ALL
-      while next_to_a_beeper?()
-        pick_beeper()
-      end
-      return
-    end
-
+  def pick_beeper_advance(n = 1)
     n.times do
-      if next_to_a_beeper?()
-        pick_beeper()
-      else
-        puts("No beeper to pick up!")
-      end
+      pick_beeper()
+      move()
+    end
+  end
+
+  def advance_pick_beeper(n = 1)
+    n.times do
+      move()
+      pick_beeper()
     end
   end
 
@@ -102,7 +121,8 @@ module ChaseMixin2
     point_at(cur_dir)
   end
 
-  def go_to(street, avenue)
+  #NOTE: x, y
+  def go_to(street, avenue, direction = nil)
     # Figure out desired horizontal direction & point at it
     point_at(avenue < @avenue ? Robota::WEST : Robota::EAST)
 
@@ -118,5 +138,7 @@ module ChaseMixin2
     while @street != street do
       move()
     end
+
+    point_at(direction) if direction != nil
   end
 end

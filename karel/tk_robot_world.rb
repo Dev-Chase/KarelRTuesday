@@ -52,6 +52,12 @@ class RobotWorld < RobotWorldBase
         sleep(@@delay / 100.0)
         $window.move_robot(@@graphical_robots[robot])
       end
+    elsif action == GO_TO_ACTION
+      register_robot(robot, state)
+      if $window
+        sleep(@@delay / 100.0)
+        # $window.move_robot(@@graphical_robots[robot])
+      end
     elsif action == CREATE_ACTION
        # puts 'create'
       register_robot(robot, state)
