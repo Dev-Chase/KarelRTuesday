@@ -121,7 +121,7 @@ module ChaseMixin2
     point_at(cur_dir)
   end
 
-  #NOTE: x, y
+  #NOTE: y, x
   def go_to(street, avenue, direction = nil)
     # Figure out desired horizontal direction & point at it
     point_at(avenue < @avenue ? Robota::WEST : Robota::EAST)
