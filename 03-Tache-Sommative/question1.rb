@@ -7,5 +7,8 @@ list = 5.times.map do
 end
 
 # Printing Result
-puts("Voici les nombres trier : ")
-puts(list.sort())
+puts("Voici les nombres trier :\n#{list.sort()}")
+
+# Old Printing (in case string formatting doesn't work)
+# puts("Voici les nombres trier : ")
+# puts(list.sort())
